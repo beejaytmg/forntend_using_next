@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 export default function Home() {
   const [data, setData] = useState({
     skills: [],
@@ -41,6 +42,22 @@ export default function Home() {
       </header>
 
       <main className="container mx-auto p-4">
+         {/* Profile Picture Section */}
+         <section className="mb-8 text-center">
+           <div className="inline-block w-24 h-24 relative">
+             <Image
+               src="/profile.jpg"
+               alt="Profile Picture"
+               width={100}
+               height={100}
+               className="rounded-full border-4 border-blue-600 shadow-lg object-cover"
+             />
+           </div>
+           <h2 className="text-2xl font-semibold mt-4">Bijay Tamang</h2>
+           <p className="text-gray-600">CODINGS</p>
+         </section>
+
+        {/* Rest of the sections remain unchanged */}
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">Skills</h2>
           <ul className="grid grid-cols-2 md:grid-cols-3 gap-4">
