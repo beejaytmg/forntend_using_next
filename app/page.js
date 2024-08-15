@@ -13,24 +13,24 @@ export default function Home() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/data');
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        const result = await response.json();
-        setData(result);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, []);
+  const fetchData = async () => {
+    try {
+      const response = await fetch('/api/data');
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const result = await response.json();
+      setData(result);
+    } catch (error) {
+      console.error('Error fetching data:', error.message);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
 
   if (loading) return <div className="text-center mt-8">Loading...</div>;
   if (error) return <div className="text-center mt-8 text-red-500">Error: {error}</div>;

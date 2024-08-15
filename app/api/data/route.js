@@ -12,10 +12,17 @@ export async function GET() {
   try {
     const responses = await Promise.all(endpoints.map(url => fetch(url)));
     const [skills, projects, education, experience, contacts] = await Promise.all(responses.map(res => res.json()));
+    
+    // Check each response
+    if (skills.error || projects.error || education.error || experience.error || contacts.error) {
+      throw new Error('One or more endpoints returned an error');
+    }
 
-    return NextResponse.json({ skills, projects, education, experience, contacts });
+    const response = NextResponse.json({ skills, projects, education, experience, contacts });
+    response.headers.set('Cache-Control', 'no-store');
+    return response;
   } catch (error) {
-    console.error('Error fetching data:', error);
-    return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 });
+    console.error('Error fetching data:', error.message);
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
