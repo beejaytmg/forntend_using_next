@@ -5,6 +5,21 @@ import Head from 'next/head';
 import Image from 'next/image';
 
 const Portfolio = () => {
+  const technicalSkills = [
+    { name: 'Django', level: '100%' },
+    { name: 'Python', level: '100%' },
+    { name: 'React', level: '69%' },
+    { name: 'Javascript', level: '90%' },
+    { name: 'Rest Api', level: '100%' },
+    { name: 'Next js', level: '90%' },
+  ];
+
+  const mlSkills = [
+    { name: 'Linear Regression', level: '90%' },
+    { name: 'Classification', level: '85%' },
+    { name: 'Neural Networks', level: '80%' },
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <Head>
@@ -25,37 +40,57 @@ const Portfolio = () => {
             />
           </div>
           <h1 className="text-3xl font-bold text-gray-800">Bijay Tamang</h1>
-          <p className="text-lg text-gray-600 italic">CODINGS</p>
+          <p className="text-lg text-gray-600 italic">Full Stack Developer & ML Enthusiast</p>
         </header>
 
         {/* Skills Section */}
         <section className="space-y-6">
           <h2 className="text-2xl font-semibold text-gray-800 border-b-2 border-gray-200 pb-2">Skills</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              { name: 'Django', level: '100%' },
-              { name: 'Python', level: '100%' },
-              { name: 'React', level: '69%' },
-              { name: 'Javascript', level: '90%' },
-              { name: 'Rest Api', level: '100%' },
-              { name: 'Next js', level: '90%' },
-            ].map((skill, index) => (
-              <div key={index} className="space-y-1">
-                <div className="flex justify-between text-sm font-medium text-gray-700">
-                  <span>{skill.name}</span>
-                  <span>{skill.level}</span>
+          
+          {/* Technical Skills */}
+          <div>
+            <h3 className="text-xl font-medium text-gray-700 mb-3">Technical Skills</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {technicalSkills.map((skill, index) => (
+                <div key={`tech-${index}`} className="space-y-1">
+                  <div className="flex justify-between text-sm font-medium text-gray-700">
+                    <span>{skill.name}</span>
+                    <span>{skill.level}</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5">
+                    <div 
+                      className="bg-blue-500 h-2.5 rounded-full" 
+                      style={{ width: skill.level }}
+                    ></div>
+                  </div>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2.5">
-                  <div 
-                    className="bg-green-500 h-2.5 rounded-full" 
-                    style={{ width: skill.level }}
-                  ></div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Machine Learning Skills */}
+          <div className="mt-6">
+            <h3 className="text-xl font-medium text-gray-700 mb-3">Machine Learning</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {mlSkills.map((skill, index) => (
+                <div key={`ml-${index}`} className="space-y-1">
+                  <div className="flex justify-between text-sm font-medium text-gray-700">
+                    <span>{skill.name}</span>
+                    <span>{skill.level}</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5">
+                    <div 
+                      className="bg-purple-500 h-2.5 rounded-full" 
+                      style={{ width: skill.level }}
+                    ></div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
+        {/* Rest of your portfolio content remains the same */}
         {/* Projects Section */}
         <section className="space-y-6">
           <h2 className="text-2xl font-semibold text-gray-800 border-b-2 border-gray-200 pb-2">Projects</h2>
